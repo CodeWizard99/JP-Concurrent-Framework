@@ -7,7 +7,6 @@ public class Server {
 
 	public static ArrayList<Room> group = new ArrayList<>(); 
 	
-	@SuppressWarnings("resource")
 	public static void main(String[] args) throws Exception{
 		
 		

@@ -10,7 +10,7 @@ public class Frame {
 	private PrintWriter nos;
 	private String username;
 	
-	Frame(PrintWriter nos, String username){
+	public Frame(PrintWriter nos, String username){
 		init();
 		this.username = username;
 		this.nos = nos;

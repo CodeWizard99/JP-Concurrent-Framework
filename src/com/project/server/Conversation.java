@@ -1,6 +1,8 @@
 package com.project.server;
 
 import java.net.*;
+
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import java.io.*;
 
@@ -32,13 +34,7 @@ public class Conversation extends Thread{
 			String username = nis.readLine();
 			User obj = new User(nos, username);
 			
-			int choice = Integer.parseInt(
-					JOptionPane.showInputDialog(
-							"**************Menu******************* \n"
-							+ "1. To Join Room\n"
-							+ "2. Peer to Peer Chat"
-							)
-					);
+			int choice = Integer.parseInt(nis.readLine());
 			
 			if(choice == 1) {
 				int grp = Integer.parseInt(JOptionPane.showInputDialog("Existing Groups ->"
@@ -47,6 +43,12 @@ public class Conversation extends Thread{
 				
 				Group g = new Group(grp, nos, nis, obj);
 				g.chat();
+			}else if(choice == 2){
+				PeerManager p = new PeerManager();
+				p.start();
+			}else {
+				JFrame f = new JFrame();
+				JOptionPane.showMessageDialog(f, "Invalid Input!!\nProcess Terminated.");
 			}
 					
 			

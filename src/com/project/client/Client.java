@@ -28,17 +28,28 @@ public class Client {
 		String name = JOptionPane.showInputDialog("Enter Username: ");
 		nos.println(name);
 		
-		Frame f = new Frame(nos, name);
-		f.show();
+		String choice = JOptionPane.showInputDialog(
+				"**************Menu******************* \n"
+				+ "1. To Join Room\n"
+				+ "2. Peer to Peer Chat");
+		nos.println(choice);
 		
-		JTextArea ta = f.getTextArea();
-		String str = nis.readLine();
-		while(!str.equals("End")) {
-			ta.append(str+"\n\n");
-			str = nis.readLine();
+		
+		if(choice.equals("1")) {
+			Frame f = new Frame(nos, name);
+			f.show();
+			
+			JTextArea ta = f.getTextArea();
+			String str = nis.readLine();
+			while(!str.equals("End")) {
+				ta.append(str+"\n\n");
+				str = nis.readLine();
+			}
+			
+			ta.append("Client Signing Off");
 		}
 		
-		ta.append("Client Signing Off");
+		
 		Thread.sleep(1000);
 		System.exit(0);
 
