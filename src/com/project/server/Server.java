@@ -5,7 +5,8 @@ import java.util.*;
 
 public class Server {
 
-	public static ArrayList<Room> group = new ArrayList<>(); 
+	public static ArrayList<Room> group = new ArrayList<>();
+	//public static ArrayList<User> userlist = new ArrayList<>();
 	
 	public static void main(String[] args) throws Exception{
 		

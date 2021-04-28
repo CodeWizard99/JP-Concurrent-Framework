@@ -8,6 +8,12 @@ import java.io.*;
 
 public class Peer1 extends Thread{
 	
+	String username;
+	
+	public Peer1(String username){
+		this.username = username;
+	}
+	
 	@Override
 	public void run() {
 		try {
@@ -16,11 +22,11 @@ public class Peer1 extends Thread{
 			BufferedReader nis = new BufferedReader(new InputStreamReader(soc.getInputStream()));
 			PrintWriter nos = new PrintWriter(new BufferedWriter(new OutputStreamWriter(soc.getOutputStream())), true);
 			
-			Frame f = new Frame(nos, "Umang");
+			PeerFrame f = new PeerFrame(nos, username);
 			f.show();
 			
 			JTextArea ta = f.getTextArea();
-			ta.append("\t\tUmang\n");
+			ta.append("\t\t"+username+"\n");
 			String str = nis.readLine();
 			while(!str.equals("End")) {
 				ta.append("\n"+str);

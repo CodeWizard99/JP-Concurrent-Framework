@@ -33,6 +33,8 @@ public class Conversation extends Thread{
 			
 			String username = nis.readLine();
 			User obj = new User(nos, username);
+			//Server.AddUser(obj);
+			//Server.userlist.add(obj);
 			
 			int choice = Integer.parseInt(nis.readLine());
 			
@@ -40,11 +42,13 @@ public class Conversation extends Thread{
 				int grp = Integer.parseInt(JOptionPane.showInputDialog("Existing Groups ->"
 						+ " "+Server.group.size()+"\n"
 								+ "Enter Group No. U wanna Join.."));
+				nos.println(grp);
 				
 				Group g = new Group(grp, nos, nis, obj);
 				g.chat();
 			}else if(choice == 2){
-				PeerManager p = new PeerManager();
+				String str = JOptionPane.showInputDialog("Enter Username of, with whom u would like to Chat :-");		
+				PeerManager p = new PeerManager(obj.getUsername(), str);
 				p.start();
 			}else {
 				JFrame f = new JFrame();
@@ -76,6 +80,7 @@ class Group{
 	
 	void chat() throws Exception {
 		r.getNoslist().add(obj);
+		System.out.println(obj.getUsername()+" has been registered");
 		
 		String str = nis.readLine();
 		while(!str.equals("End")) {

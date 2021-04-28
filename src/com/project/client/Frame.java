@@ -9,11 +9,27 @@ public class Frame {
 
 	private PrintWriter nos;
 	private String username;
+	private int group;
+	private String name;
 	
-	public Frame(PrintWriter nos, String username){
+	public Frame(PrintWriter nos, String username, int group){
 		init();
 		this.username = username;
 		this.nos = nos;
+		this.group = group;
+	}
+	
+	public Frame(String username, int group) {
+		this.username = username;
+		this.group = group;
+	}
+	
+	void setName() {
+		this.name = " Group "+group;
+	}
+	
+	public String getname() {
+		return name;
 	}
 	
 	private JFrame f1 = new JFrame(username);

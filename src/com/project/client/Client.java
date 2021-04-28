@@ -1,10 +1,9 @@
 package com.project.client;
 
 import java.net.*;
-
 import javax.swing.*;
-
 import java.io.*;
+import com.project.server.*;
 
 public class Client {
 
@@ -36,10 +35,18 @@ public class Client {
 		
 		
 		if(choice.equals("1")) {
-			Frame f = new Frame(nos, name);
-			f.show();
 			
-			JTextArea ta = f.getTextArea();
+			int grp = Integer.parseInt(nis.readLine());
+			
+			GFrame f = new GFrame(nos, name, grp);
+			//f.show();
+			
+			//Thread.sleep(1000);
+			//AddFrame add = new AddFrame(name, grp, f);
+			//add.start();
+			
+			
+			JTextArea ta = f.getTextArea();			
 			String str = nis.readLine();
 			while(!str.equals("End")) {
 				ta.append(str+"\n\n");

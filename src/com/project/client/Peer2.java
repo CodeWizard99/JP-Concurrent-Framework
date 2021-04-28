@@ -7,13 +7,20 @@ import javax.swing.JTextArea;
 import java.io.*;
 
 public class Peer2 extends Thread{
+	
+	String username;
+	
+	public Peer2(String username){
+		this.username = username;
+	}
+	
 	@Override
 	public void run() {
 		try {
 			System.out.println("Server Signing On");
 			ServerSocket ss = new ServerSocket(9081);
 			Socket soc = ss.accept();
-			Conversation c = new Conversation(soc);
+			Conversation c = new Conversation(soc, username);
 			c.start();
 			ss.close();
 		}catch(Exception ex) {
@@ -26,9 +33,11 @@ public class Peer2 extends Thread{
 class Conversation extends Thread{
 	
 	Socket soc;
+	String username;
 	
-	public Conversation(Socket soc) {
+	public Conversation(Socket soc, String username) {
 		this.soc = soc;
+		this.username = username;
 	}
 	
 	@Override
@@ -39,11 +48,11 @@ class Conversation extends Thread{
 			
 			PrintWriter nos = new PrintWriter(new BufferedWriter(new OutputStreamWriter(soc.getOutputStream())), true);
 			
-			Frame f = new Frame(nos, "Raju");
+			PeerFrame f = new PeerFrame(nos, username);
 			f.show();
 			
 			JTextArea ta = f.getTextArea();
-			ta.append("\t\tRaju\n");
+			ta.append("\t\t"+username+"\n");
 			String str = nis.readLine();
 			while(!str.equals("End")) {
 				ta.append("\n"+str);
